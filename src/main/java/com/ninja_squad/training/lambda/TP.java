@@ -24,13 +24,36 @@ public class TP {
         //step8().forEach((t) -> System.out.println(t));
         //step9().forEach((s, t) -> System.out.println(s + " ===> "+ t));
 
-        //CRASHES NETBEANSÂ ! step10().forEach((s, t) -> System.out.println(s + " ===> "+ t));
+        //CRASHES NETBEANS ! step10().forEach((s, t) -> System.out.println(s + " ===> "+ t));
         //System.out.println(step10().size());
         
         //System.out.println(step11());
         //System.out.println(step12());
         //System.out.println(step13());
         //System.out.println(step14());
+        for (int ind = 0; ind < 9; ind++) {
+            long start = System.currentTimeMillis();
+            int n = 100;
+            switch (ind%3) {
+                case 0:
+                    for (int i = 0; i < n; i++) {
+                        step15();
+                    }
+                    break;
+                case 1:
+                    for (int i = 0; i < n; i++) {
+                        step16();
+                    }
+                    break;
+                case 2:
+                    for (int i = 0; i < n; i++) {
+                        step17();
+                    }
+                    break;
+            }
+            System.out.println((ind%3)+" => "+(System.currentTimeMillis()-start));
+        }
+    }
 
     /**
      * Ecrivez les dates des tweets sur la sortie standard
@@ -144,5 +167,17 @@ public class TP {
         int n = Tweet.TWEETS.size();
         return Tweet.TWEETS.parallelStream().map(Tweet::getText).mapToInt(String::length).reduce(0, (a,b) -> a+b)/n;
     }
+
+    public static int step15() {
+        int n = Tweet.HUGE_TWEETS.size();
+        return Tweet.HUGE_TWEETS.stream().map(Tweet::getText).mapToInt(String::length).reduce(0, (a,b) -> a+b)/n;
+    }
+    public static int step16() {
+        int n = Tweet.HUGE_TWEETS.size();
+        return Tweet.HUGE_TWEETS.parallelStream().map(Tweet::getText).mapToInt(String::length).reduce(0, (a,b) -> a+b)/n;
+    }
+    public static int step17() {
+        int n = Tweet.HUGE_TWEETS.size();
+        return Tweet.HUGE_TWEETS.parallelStream().map(Tweet::getText).mapToInt(String::length).sum()/n;
     }
 }

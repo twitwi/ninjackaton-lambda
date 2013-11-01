@@ -2,10 +2,12 @@ package com.ninja_squad.training.lambda;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -49,6 +51,20 @@ public final class Tweet {
                                                              "Oh Nooooo! I want #lambda now! #suicide",
                                                              date("15/01/2012 22:00"),
                                                              0)));
+
+    public static final List<Tweet> HUGE_TWEETS = new ArrayList<Tweet>();
+    static {
+        long id = 0;
+        Random r = new Random();
+        for (int i = 0; i < 1000000; i++) {
+            HUGE_TWEETS.add(
+                    new Tweet(id,
+                            "@bob"+r.nextInt(10),
+                            "bla bla bla hahahasesate eatteatea reatra #tag"+r.nextInt(10)+" #tag"+r.nextInt(10)+" #tag"+r.nextInt(10),
+                            new Date(),
+                            (int) Math.sqrt(id)));
+        }
+    }
 
     private static final Date date(String s) {
         try {
